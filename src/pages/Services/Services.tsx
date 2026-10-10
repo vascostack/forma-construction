@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { LuArrowUpRight, LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import Reveal from "../../components/common/Reveal";
 
 import card1 from "../../assets/images/card1.jpg";
 import card2 from "../../assets/images/card2.jpg";
@@ -51,10 +52,12 @@ function Services() {
   };
 
   return (
-    <section className="bg-white px-5 py-14 md:px-10 md:py-16 lg:px-16">
+    <section
+      id="services"
+      className="scroll-mt-16 bg-white px-5 py-14 md:px-10 md:py-16 lg:px-16"
+    >
       <div className="mx-auto max-w-7xl text-center">
-        {/* Heading */}
-        <div className="mb-7">
+        <Reveal className="mb-7">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-green-700">
             Our Services
           </p>
@@ -67,11 +70,10 @@ function Services() {
             Full-service construction solutions, delivered with care, quality,
             and precision.
           </p>
-        </div>
+        </Reveal>
 
         {/* Slider */}
-        <div className="relative">
-          {/* Previous Button */}
+        <Reveal delay={300} className="relative">
           <button
             type="button"
             onClick={() => slide(-1)}
@@ -81,7 +83,6 @@ function Services() {
             <LuChevronLeft className="h-5 w-5" />
           </button>
 
-          {/* Cards Track */}
           <div
             ref={trackRef}
             className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -91,33 +92,28 @@ function Services() {
                 key={item.title}
                 className="group relative h-[300px] w-full shrink-0 snap-start overflow-hidden rounded-lg bg-gray-200 sm:h-[340px] md:w-[calc(50%-10px)]"
               >
-                {/* Full Image */}
                 <img
                   src={item.image}
                   alt={item.title}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Dark Gradient */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${item.theme}`}
                 />
 
-                {/* Green Transparent Overlay */}
                 {item.tint && (
                   <div
                     className={`absolute inset-0 ${item.tint} transition-colors duration-500 group-hover:bg-green-700/55`}
                   />
                 )}
 
-                {/* Small Label */}
                 <div className="absolute left-4 top-4 rounded-full border border-white/40 bg-white/15 px-3 py-1.5 backdrop-blur-sm md:left-5 md:top-5">
                   <span className="text-[10px] font-medium text-white md:text-xs">
                     Forma Solid Structure
                   </span>
                 </div>
 
-                {/* Explore Button */}
                 <button
                   type="button"
                   aria-label={`Explore ${item.title}`}
@@ -131,7 +127,6 @@ function Services() {
                   <LuArrowUpRight className="h-6 w-6" />
                 </button>
 
-                {/* Bottom Content */}
                 <div className="absolute bottom-0 left-0 max-w-xl p-5 text-white md:p-7">
                   <p className="text-sm font-medium md:text-base">
                     {item.lead}
@@ -149,7 +144,6 @@ function Services() {
             ))}
           </div>
 
-          {/* Next Button */}
           <button
             type="button"
             onClick={() => slide(1)}
@@ -158,7 +152,7 @@ function Services() {
           >
             <LuChevronRight className="h-5 w-5" />
           </button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

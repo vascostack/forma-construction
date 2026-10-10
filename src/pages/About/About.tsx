@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   LuArrowRight,
   LuCheck,
@@ -5,6 +6,8 @@ import {
   LuShieldCheck,
   LuTrophy,
 } from "react-icons/lu";
+import { motion } from "motion/react";
+import Reveal from "../../components/common/Reveal";
 import aboutImg from "../../assets/images/card1.jpg";
 
 const checks = [
@@ -15,10 +18,16 @@ const checks = [
 
 function About() {
   return (
-    <section className=" bg-gray-200 px-5 py-14 md:px-10 md:py-16 lg:px-16">
+    <section
+      id="about"
+      className="scroll-mt-16 bg-gray-200 px-5 py-14 md:px-10 md:py-16 lg:px-16"
+    >
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-14">
         {/* Image */}
-        <div className="relative mx-auto w-full max-w-[500px] pb-8 pr-3 pt-3">
+        <Reveal
+          direction="left"
+          className="relative mx-auto w-full max-w-[500px] pb-8 pr-3 pt-3"
+        >
           <div className="relative overflow-hidden rounded-lg">
             <img
               src={aboutImg}
@@ -47,10 +56,10 @@ function About() {
               </p>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Content */}
-        <div>
+        <Reveal direction="right" delay={300}>
           <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-green-700">
             About Us
           </p>
@@ -101,11 +110,20 @@ function About() {
           </div>
 
           {/* Button */}
-          <button className="mt-7 inline-flex items-center gap-2 rounded-md bg-green-700 px-5 py-3 text-xs font-bold text-white transition hover:bg-green-800">
-            READ MORE
-            <LuArrowRight className="h-4 w-4" />
-          </button>
-        </div>
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="mt-7 w-fit"
+          >
+            <Link
+              to="/about-us"
+              className="inline-flex items-center gap-2 rounded-md bg-green-700 px-5 py-3 text-xs font-bold text-white transition hover:bg-green-800"
+            >
+              READ MORE
+              <LuArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+        </Reveal>
       </div>
     </section>
   );
